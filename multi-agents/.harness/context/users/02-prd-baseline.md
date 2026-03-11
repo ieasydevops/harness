@@ -16,7 +16,7 @@
 
 ## 3. 功能需求
 
-{{FUNCTIONAL_REQUIREMENTS}}
+{{FEATURE_REQUIREMENTS}}
 
 ---
 

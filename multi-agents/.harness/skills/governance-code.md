@@ -12,11 +12,11 @@
 
 ## Phase 2: 扫描
 - Agent: Reviewer（subagent 并行）
-- 通过 `use_subagents` 启动扫描，读取 `.harness/subskills/` 对应模板作为 prompt。无 subagent 能力时主 Agent 顺序执行
-- 按 subskills/ 目录下的扫描模板逐维度执行
+- 通过 `use_subagents` 启动扫描，读取 `.harness/skills/subskills/` 对应模板作为 prompt。无 subagent 能力时主 Agent 顺序执行
+- 扫描维度按 AGENTS.md Subskills 注册表中的扫描模板执行
 - 每个维度必须有独立扫描结论，禁止跳过或虚报
 
-检查点：`[Phase 2 扫描] N个维度完成, 共M项违规 (类别1:X, 类别2:Y, ...)`
+检查点：`[Phase 2 扫描] N个维度完成, 共M项违规 (安全X, 架构Y, ...)`
 
 ## Phase 3: 汇总与确认
 - Agent: Orchestrator
@@ -35,7 +35,7 @@
 
 ### Step 5a: 构建验证（主 Agent）
 ```bash
-{{BUILD_COMMAND}} 2>&1 | tail -20
+{{BUILD_COMMAND}}
 ```
 零警告。失败回 Phase 4。
 

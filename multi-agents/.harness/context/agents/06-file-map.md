@@ -1,16 +1,19 @@
 # 功能与文件映射
 
-{{FILE_MAP}}
+{{FILE_MAP_ENTRIES}}
 
 示例格式：
 
-## 模块A
-- 功能描述：源文件路径
+## 应用入口与全局
+- 入口/根状态：Sources/UI/App.swift
 
-## 模块B
-- 功能描述：源文件路径
+## 核心功能
+- 功能A：Sources/Core/FeatureA.swift
+
+## 模型与常量
+- Models/：数据模型文件
+- Constants.swift
 
 ## 测试
-- 单元测试：测试目录/
-- 功能测试：测试目录/FunctionalTests/
-- UI 测试：测试目录/UITests/
+- 单元测试（Tests/）
+- UI 测试（UITests/）

@@ -33,7 +33,7 @@
 
 按优先级排序：
 
-{{DECISION_CRITERIA}}
+{{PRODUCT_DECISION_CRITERIA}}
 
 优先级低的需求，哪怕技术可行，也应推迟或拒绝。
 
@@ -41,7 +41,7 @@
 
 ## 不做什么
 
-{{NOT_DOING_LIST}}
+{{WHAT_NOT_TO_DO}}
 
 ---
 

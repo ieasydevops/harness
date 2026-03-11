@@ -12,7 +12,7 @@
 ## 工作流程
 
 1. 解析 spec，提取 scope 文件列表
-2. 按需加载 scope 内源文件及必要的依赖文件
+2. 按需加载 scope 内源文件及必要的依赖文件（Models、Constants）
 3. 实现代码变更
 4. 如涉及核心模块变更，同步补充单元测试
 5. 输出变更文件列表作为检查点摘要
@@ -20,8 +20,7 @@
 ## 编码约束
 
 完整定义见 .harness/context/agents/03-conventions.md，核心规则：
-
-{{CODER_CONSTRAINTS}}
+{{CODER_CODING_RULES}}
 
 ## 上下文管理
 

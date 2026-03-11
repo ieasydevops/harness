@@ -10,7 +10,7 @@
 
 ## 磁盘存储结构
 
-{{STORAGE_STRUCTURE}}
+{{DISK_STORAGE_STRUCTURE}}
 
 ## 边界约定
 

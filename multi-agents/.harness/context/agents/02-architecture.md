@@ -2,14 +2,14 @@
 
 ## 分层
 
-{{LAYER_DEFINITIONS}}
+{{ARCHITECTURE_LAYERS}}
 
-示例层级（按项目实际调整）：
-- 表现层：UI 视图与页面组件
-- 协调层：串联多个服务，上报进度与结果
-- 能力层：各类 Service/Manager
-- 系统集成：系统 API 桥接（如 Siri、Widget）
-- 数据层：数据模型与常量
+示例分层结构：
+- 表现层：UI 视图
+- 协调层：串联多个服务的 Coordinator
+- 能力层：各种 Service、Manager
+- 系统集成：与系统特性对接（如 Intents）
+- 数据层：数据模型、配置
 
 ## 模块边界
 

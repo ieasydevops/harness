@@ -14,7 +14,7 @@
 ### Step 1: 构建验证（主 Agent）
 
 ```bash
-{{BUILD_COMMAND}} 2>&1 | tail -20
+{{BUILD_COMMAND}}
 ```
 要求零警告。失败则验收不通过。
 
@@ -26,7 +26,10 @@
 
 | # | 模板 | 维度 |
 |---|------|------|
-| {{SCAN_TEMPLATES}} |
+| 1 | .harness/skills/subskills/scan-architecture.md | 架构边界 |
+| 2 | .harness/skills/subskills/scan-conventions.md | 编码约定 |
+| 3 | .harness/skills/subskills/scan-security.md | 安全规范 |
+| {{SCAN_SUBSKILL_ROW}} | | |
 
 可选：scan-dead-code.md（涉及文件删除时）。超 5 个分批执行。
 
@@ -37,12 +40,12 @@
 ### Step 4: 测试验证（如有相关测试）
 
 ```bash
-{{TEST_COMMAND}} 2>&1 | tail -30
+{{TEST_COMMAND}}
 ```
 
 ## 输出
 
-通过：`[Phase 5 结果验收] 构建: 通过, 扫描: N维度/0违规, 验收标准: M项通过, 测试: 通过/跳过`
+通过：`[Step 4.2 结果验收] 构建: 通过, 扫描: N维度/0违规, 验收标准: M项通过, 测试: 通过/跳过`
 
 不通过时输出 JSON（build/scan_issues/criteria_check），交回 Coder 修复后重新验收。
 
