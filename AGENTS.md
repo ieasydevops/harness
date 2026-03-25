@@ -29,6 +29,7 @@ Skill 定义"做什么"，Agent 定义"谁来做"。多 Agent Skill 的每个 Ph
 | 治理技能 | 人工指令 | .harness/skills/harness-ops/governance-capability.md |
 | 提取Harness模板 | 人工指令 | .harness/skills/harness-ops/extract-harness-tpl.md |
 | 治理全部 | 人工指令 | .harness/skills/harness-ops/governance-all.md |
+| GitHub 集成 | 人工指令/GitHub 相关操作 | .harness/skills/harness-ops/github-integration.md |
 | 总结任务 | AI自动触发（任务完成后） | .harness/skills/summarize-task.md |
 
 自动触发：标注"AI自动触发"的 Skill 必须在对应时机自动执行。当前仅 Skill: 总结任务（仅适用于按迭代功能完整流程执行的任务）。
