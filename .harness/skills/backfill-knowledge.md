@@ -1,3 +1,8 @@
+---
+name: backfill-knowledge
+description: 人工指令触发知识库回填
+---
+
 # Skill: 回填知识库
 
 触发：人工指令。对比实际代码与知识库文档，修正过时描述并同步 AGENTS.md。
@@ -7,9 +12,9 @@
 ## 步骤
 
 ### Step 1 -- 读取现状
-读取 AGENTS.md + .harness/context/agents/ 全部 + context/users/ 目录结构 + skills/ 目录（含 subskills/），按需扫描源码目录。
+读取 AGENTS.md + .harness/knowledge/ 全部 + prd/ 目录结构 + skills/ 目录（含 subskills/），按需扫描源码目录。
 
-### Step 2 -- 更新 agents/ 知识库
+### Step 2 -- 更新 knowledge/ 知识库
 对比实际代码与文档，修正过时描述，简化压缩内容。
 
 ### Step 3 -- 提取 AGENTS.md 候选变更

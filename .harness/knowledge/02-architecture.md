@@ -1,0 +1,13 @@
+# 架构
+
+## 模块结构
+
+{{MODULE_STRUCTURE}}
+
+## 模块职责
+
+{{MODULE_RESPONSIBILITIES}}
+
+## 跨模块依赖
+
+{{CROSS_MODULE_DEPENDENCIES}}
