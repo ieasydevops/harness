@@ -1,13 +1,38 @@
-# 数据边界
+<!-- SUMMARY: {{data_boundaries_summary}} -->
+# 数据与类型边界
 
-## 数据模型
+## 会话记录
 
-{{DATA_MODELS}}
+{{session_record}}
 
-## 存储格式
+## 语音与配置
 
-{{STORAGE_FORMAT}}
+{{voice_and_config}}
 
-## 数据流
+## 协调器输入输出
 
-{{DATA_FLOW}}
+{{coordinator_io}}
+
+## 磁盘存储结构
+
+{{disk_storage_structure}}
+
+## 会话历史
+
+{{session_history}}
+
+## 配置文件
+
+{{config_file}}
+
+## 导出/导入
+
+{{export_import}}
+
+## UserDefaults
+
+{{user_defaults}}
+
+## 边界约定
+
+{{boundary_conventions}}

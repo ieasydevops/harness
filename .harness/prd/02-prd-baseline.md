@@ -1,12 +1,36 @@
-# 产品基线
+<!-- SUMMARY: {{PRD_BASELINE_SUMMARY}} -->
+# 产品需求 - 稳定固化(不频繁变更)
 
-## 约束
-本文仅供自然人使用，未经人工确认、禁止AI修改。
+## 1. 极简摘要
 
-## 功能清单
+{{BRIEF_SUMMARY}}
 
-{{FEATURE_LIST}}
+产品定位、体验原则与判断准则见 prd/01-prd-sense.md。
 
-## 产品约束
+---
 
-{{PRODUCT_CONSTRAINTS}}
+## 2. 页面结构
+
+{{PAGE_STRUCTURE}}
+
+---
+
+## 3. 功能需求
+
+### 3.1 {{FEATURE_SECTION_1}}
+{{FEATURE_CONTENT_1}}
+
+### 3.2 {{FEATURE_SECTION_2}}
+{{FEATURE_CONTENT_2}}
+
+---
+
+## 4. 非功能与约束
+
+{{NON_FUNCTIONAL_CONSTRAINTS}}
+
+---
+
+## 5. 版本与需求池
+
+{{VERSION_AND_BACKLOG}}

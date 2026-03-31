@@ -1,13 +1,14 @@
-# 架构
+<!-- SUMMARY: {{architecture_summary}} -->
+# 架构与模块边界
 
-## 模块结构
+## 分层
 
-{{MODULE_STRUCTURE}}
+{{layers}}
 
-## 模块职责
+## 模块边界
 
-{{MODULE_RESPONSIBILITIES}}
+{{module_boundaries}}
 
-## 跨模块依赖
+## 关键约束
 
-{{CROSS_MODULE_DEPENDENCIES}}
+{{key_constraints}}

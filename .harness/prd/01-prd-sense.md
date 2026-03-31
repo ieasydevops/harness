@@ -1,20 +1,48 @@
-# 产品SENSE
+<!-- SUMMARY: {{PRD_SENSE_SUMMARY}} -->
+# 01-prd-sense.md -- {{PROJECT_NAME}}
 
-## 约束
-本文仅供自然人使用，未经人工确认、禁止AI修改。
+{{PRD_SENSE_INTRO}}
+
+---
 
 ## 产品定位
 
 {{PRODUCT_POSITIONING}}
 
-## 目标用户
+## 产品愿景
 
-{{TARGET_USERS}}
+{{PRODUCT_VISION}}
 
-## 判断准则
+---
+
+## 核心用户
+
+| 角色 | 诉求 | 优先级 |
+|------|------|--------|
+| {{USER_ROLE_1}} | {{USER_NEED_1}} | {{PRIORITY_1}} |
+
+{{CORE_USER_NOTES}}
+
+---
+
+## 体验原则
+
+{{EXPERIENCE_PRINCIPLES}}
+
+---
+
+## 产品判断准则
 
 {{DECISION_CRITERIA}}
 
-## 不做方向
+---
+
+## 不做什么
 
 {{OUT_OF_SCOPE}}
+
+---
+
+## 维护
+
+产品方向调整或 Agent 做出与此准则相悖的决策时，更新对应条目。

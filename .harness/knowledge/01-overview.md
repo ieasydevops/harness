@@ -1,17 +1,22 @@
+<!-- SUMMARY: {{project_summary}} -->
 # 项目概览
 
-## 项目简介
+## 一句话
 
-{{PROJECT_DESCRIPTION}}
+{{project_description}}
 
 ## 技术栈
 
-{{TECH_STACK}}
+{{tech_stack}}
 
-## 项目边界
+## 入口与根状态
 
-{{PROJECT_BOUNDARIES}}
+{{entry_and_root_state}}
 
-## 操作约束
+## 核心流程
 
-操作约束见 AGENTS.md。
+{{core_workflow}}
+
+## 文档与规则
+
+{{docs_and_rules}}

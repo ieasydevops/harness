@@ -1,5 +1,4 @@
+<!-- SUMMARY: {{glossary_summary}} -->
 # 术语表
 
-| 术语 | 含义 |
-|------|------|
-| {{TERM}} | {{DEFINITION}} |
+{{glossary_entries}}
