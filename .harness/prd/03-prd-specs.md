@@ -1,4 +1,4 @@
-
+<!-- SUMMARY: {{概述该文件内容的一句话}} -->
 # 产品需求 - 迭代演进
 
 ## 约束
@@ -6,22 +6,23 @@
 
 ## 需求列表
 
-[{{DATE_YYYYMMDD}}]
-- HE
-    - {{HE_ITEM}}
-- 新增
-    - {{NEW_FEATURE_ITEM}}
-- 优化
-    - {{OPTIMIZATION_ITEM}}
+[{{YYYYMMDD}}]
+- {{分类标签，如HE/新增/优化}}
+    - {{具体需求描述}}
+        - {{迭代/Bug/问题等子条目}}
+
+[{{YYYYMMDD}}]
+- {{分类标签}}
+    - {{具体需求描述}}
 
 ---
 
 [待办]
-- 优化
-    - {{BACKLOG_OPTIMIZATION}}
-- 新增
-    - {{BACKLOG_NEW_FEATURE}}
-- HE
-    - {{BACKLOG_HE_ITEM}}
+- {{分类标签}}
+    - {{待办需求描述}}
+- {{分类标签}}
+    - {{待办需求描述}}
+- {{分类标签}}
+    - {{待办需求描述}}
 - 备选
-    - {{BACKLOG_OPTIONAL}}
+    - {{低优先级或备选需求}}
