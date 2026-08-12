@@ -17,7 +17,7 @@ description: 功能迭代端到端工作流，编排 Designer/Planner/Coder/Revi
 Workflow Progress:
 - [ ] Phase 1: 知识加载（知识库加载、约束确认）
 - [ ] Phase 2: 需求探索与设计（spec 落盘）[GATE]
-- [ ] Phase 3: 计划制定（plan 落盘）[GATE-ENTRY]
+- [ ] Phase 3: 计划制定（plan 落盘 + verify 落盘）[GATE-ENTRY]
 - [ ] Phase 4: 代码实现（按 plan 逐 task）
 - [ ] Phase 5: 结果验收（构建 + 扫描 + 验收标准）
 - [ ] Phase 6: 知识回填
@@ -46,6 +46,7 @@ Workflow Progress:
 - Agent: Planner
 - `[GATE-ENTRY]` 前置条件：用户已在上一条消息中明确确认 spec；若 Phase 2 在当前回复中刚输出，说明 GATE 被违反，必须停止
 - 执行 `Skill: writing-plans`（`.harness/framework/skills/superpowers/writing-plans.md`），按其流程执行到 "Plan Review Loop" 后终止；"Execution Handoff" 由本 Phase 自行执行
+- plan 落盘并完成 Plan Review Loop 后，执行 `Skill: writing-verify`（`.harness/framework/skills/superpowers/writing-verify.md`），输入 Phase 2 spec 文件路径和 Phase 3 plan 文件路径，生成独立旁路人工验收文件 `.harness/specs/verify/verify-{YYMMDD}-{desc}.md`
 - plan 落盘后，确定执行方式（Subagent-Driven / Inline Execution）后直接进入 Phase 4：若用户在输入指令中明确指定了执行方式则遵从；否则 AI 按任务规模自主决策，plan 中 task <= 3 个时使用 Inline Execution，其余使用 Subagent-Driven，无需人工确认。禁止中断回复等待确认 -- 本 Phase 无 [GATE] 标记，plan 落盘后必须自主推进
 
 检查点：`[Phase 3 计划制定] tasks: N 个, steps: M 步, 执行方式: subagent/inline`
@@ -72,7 +73,7 @@ Workflow Progress:
 
 ## Phase 7: 任务总结
 - Agent: Orchestrator
-- 执行顺序：`Skill: 归档任务文件`（输入：Phase 2 spec 文件路径 + Phase 3 plan 文件路径）-> `Skill: 总结任务` -> 结束任务，在同一条回复中完成
+- 执行顺序：`Skill: 归档任务文件`（输入：Phase 2 spec 文件路径 + Phase 3 plan 文件路径）-> `Skill: 总结任务` -> 提醒人工验收 -> 结束任务，在同一条回复中完成
 
 检查点：`[Phase 7 任务总结] 归档: spec+plan, 状态: 完成`
 
