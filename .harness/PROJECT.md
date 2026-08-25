@@ -8,6 +8,10 @@
 
 本节为 Harness 框架提供项目级配置，框架文件通过 `.harness/PROJECT.md` 直接引用。
 
+## 运行配置
+
+机器可读的 Harness 运行配置统一位于 `.harness/harness.json`，消费者通过 `sh .harness/framework/scripts/get-config.sh <config-key>` 读取。当前管理 Third Review 与 after-finish Hook；本文件只保留项目说明、知识索引和人工规则，不重复维护运行值或默认值。
+
 ## 知识库目录
 
 首次加载时需建立 SUMMARY 索引的目录：
@@ -58,6 +62,15 @@
 
 ```bash
 {{测试命令}}
+```
+
+### E2E 测试
+E2E 测试执行策略：
+- {{描述 E2E 的允许运行环境与禁止事项}}
+- {{描述 E2E 前置构建、启动或数据准备要求}}
+
+```bash
+{{E2E 测试命令}}
 ```
 
 ## 扫描维度
@@ -122,6 +135,8 @@ AGENTS.md              -- AI 入口（纯路由）
 CLAUDE.md              -- Claude Code 入口
 .harness/
   PROJECT.md           -- 项目规范入口（本文件）
+  harness.json         -- Harness 机器可读运行配置
+  hooks/               -- Workflow 项目扩展 Hook（可选，如 after-finish.sh）
   framework/           -- 通用能力（详见 FRAMEWORK.md "Framework 目录结构"）
   knowledge/           -- AI 知识库（01~05 认知约束类, 21~22 工具索引类）
   prd/                 -- 产品文档（AI只读：01-prd-sense、02-prd-baseline、03-prd-specs）

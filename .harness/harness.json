@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "thirdReview": {
+    "enabled": false,
+    "provider": "{{三方审阅 Provider 名称，已提供codex}}",
+    "model": null,
+    "timeoutSeconds": 900
+  },
+  "hooks": {
+    "afterFinish": {
+      "enabled": false
+    }
+  }
+}

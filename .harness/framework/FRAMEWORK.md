@@ -36,6 +36,19 @@
 3. 遵守 `[GATE]` 门禁（见下方 GATE 规则），在 GATE 点等待用户确认后再继续
 4. 按 Phase 定义的消息输出格式输出，不简化、不改动
 
+## Workflow Hook
+
+Workflow 可在明确声明的扩展点调用 `.harness/hooks/` 下的项目自定义脚本。Hook 是稳定调用入口，具体命令和项目配置由 Hook 自行管理。
+
+### after-finish Hook
+
+- 支持在 Workflow 最后一个 Phase 成功结束后执行自定义收尾命令，配置开关通过 `sh .harness/framework/scripts/get-config.sh hooks.afterFinish.enabled` 获取，统一入口为 `.harness/hooks/after-finish.sh`
+- Hook 仅在 Workflow 明确声明时执行；当前适用 Workflow：`iterate-feature`、`refine-feature`、`fix-bug`
+- 配置缺失或开关为 `false` 时返回 `hook: disabled`，不得检查或执行脚本
+- Hook 文件不存在时视为未定义，直接跳过；不得因为未定义 Hook 中断或降级 Workflow
+- Hook 文件存在时执行：`sh .harness/hooks/after-finish.sh`
+- Hook 失败不回滚已完成 Phase；必须在最终输出中标注失败命令和退出码，等待用户决策
+
 ## Skill 执行
 
 1. 读取定义：立即读取对应的 Skill 文件（如 `.harness/framework/skills/harness/load-knowledge.md`）
@@ -94,6 +107,16 @@ Agent 定义"谁来做"，Workflow 编排"按什么顺序做"，Skill 提供"原
 
 subagent 为性能优化手段，非流程成败条件。所有使用 subagent 的 Phase/Skill 必须支持主 Agent 顺序执行的降级路径，降级不改变产出质量要求。
 
+## Third Review（三方审阅）
+
+Third Review 是 Workflow 内部的通用 Skill，用于在主流程模型产出关键文档后引入可替换 provider 审阅并修正文件。能力默认关闭；项目启用后，spec/plan 顺序固定为：文档 Skill 自带 Review Loop -> `Skill: 三方审阅` -> Third Review Skill 内的主流程复审。它不新增 Phase、不改变 GATE，也不替代前序 Review Loop。
+
+流程、输入、provider 选择、输出、失败确认和跳过状态的唯一权威定义是 `.harness/framework/skills/harness/third-review/SKILL.md`。项目开关和默认 provider/model/timeout 定义在 `.harness/harness.json` 的 `thirdReview` 配置中，并通过统一配置脚本获取；Workflow 只决定调用时机并传入当前 Task 的文件路径与 Review Loop evidence，不直接调用 runner、provider 或读取 provider 环境变量。
+
+## Harness 运行配置
+
+`.harness/harness.json` 是机器可读运行配置的唯一权威源，使用严格 JSON。所有消费者必须从项目根目录调用 `sh .harness/framework/scripts/get-config.sh <config-key>`，不得自行解析 JSON 或从自然语言推断默认值。脚本首版支持 `thirdReview.enabled`、`thirdReview.provider`、`thirdReview.model`、`thirdReview.timeoutSeconds`、`hooks.afterFinish.enabled`，确定性默认值依次为 `false`、空、空、`900`、`false`；布尔输出为 `true`/`false`，`null` 输出为空行。配置文件缺失时使用默认值；配置存在时严格校验 JSON、`version=1`、字段结构和类型。脚本按 `jq` -> `python3` -> `node` 自动选择可用 JSON 解析器，均不可用时明确失败。`.harness/PROJECT.md` 继续承载人工规则和项目说明，不重复运行值。
+
 ## Workflows（端到端编排）
 
 编排多个 Agent 角色完成端到端目标，含 GATE 门禁和反馈环路。详细定义见 `.harness/framework/workflows/` 目录。
@@ -124,6 +147,7 @@ Skill 只定义"做什么"和"怎么做"，不声明自身的触发时机；调�
 | 提取Harness模板 | 人工指令 | .harness/framework/skills/harness-ops/extract-harness-tpl/SKILL.md |
 | 扫描Harness文档 | 人工指令 | .harness/framework/skills/harness-ops/scan-harness.md |
 | 总结任务 | Workflow显式调用 | .harness/framework/skills/harness/summarize-task.md |
+| 三方审阅 | `iterate-feature` 的 spec/plan Review Loop 后 | .harness/framework/skills/harness/third-review/SKILL.md |
 
 
 ### 外部依赖能力
@@ -234,11 +258,14 @@ AI 自主维护教训库，人工可通过提示或建议触发新增/修正。
 ```
 .harness/framework/
   FRAMEWORK.md         -- 通用规范入口（本文件）
+  scripts/
+    get-config.sh      -- Harness 运行配置统一读取与默认值入口
   agents/              -- Agent 角色模板（Orchestrator、Designer、Planner、Coder、Reviewer）
   workflows/           -- Workflow 端到端编排（迭代功能、修复Bug、迭代文档）
     harness-ops/       -- Harness 运维类 Workflow（治理代码-人工、治理技能-人工）
   skills/              -- Skill 定义
     harness/           -- Harness 核心 Skill
+      third-review/    -- 通用三方审阅 Skill 与 provider 适配器
       subskills/       -- Subskill 扫描模板
     harness-ops/       -- Harness 运维类 Skill
     superpowers/       -- superpowers 方法论技能（开发方法论，本地适配版）
@@ -253,7 +280,7 @@ AI 自主维护教训库，人工可通过提示或建议触发新增/修正。
 |------|---------|
 | .harness/framework/guides/00-harness-desc.md | 了解 Harness 体系描述时 |
 | .harness/framework/guides/02-harness-dev.md | 了解 Harness 开发流程时 |
-| .harness/framework/guides/10-guidelines-fe.md | 前端项目规范，包括组件、布局、视觉、交互和安全渲染时等 |
+| .harness/framework/guides/10-guidelines-fe.md | 了解前端项目规范，包括组件、布局、视觉、交互、安全渲染和 TUI/CLI 双界面设计时 |
 | .harness/framework/lessons/general.md | 用户指令或当前根因与 SUMMARY 高度相关时按需读取 |
 
 注意：00-harness-desc.md 与 FRAMEWORK.md 有内容重叠（能力模型、阶段命名等），AI 已从 FRAMEWORK.md 获取执行规则时无需再读 00-harness-desc.md，除非用户明确要求。
